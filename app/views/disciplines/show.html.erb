@@ -1,0 +1,32 @@
+<div class="container p-5">
+  <div class=" d-flex justify-content-center">
+  <p style="color: green"><%= notice %></p>
+  <div class="card" style="width: 50%">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-1">
+          <%= link_to "", disciplines_path, class: 'bi bi-arrow-left' %>
+        </div>
+        <div class="col">
+          <h5 class="card-title"> <%= @discipline.title %> </h5>
+        </div>
+        <div class="col-3">
+          <%= link_to '', edit_discipline_path(@discipline), class: 'bi bi-pencil-square' %>
+          <%= link_to('', type: 'button', data: { bs_toggle: 'modal', bs_target: '#exampleModal' }) do %>
+            <i class='bi bi-trash text-danger'></i>
+          <% end %>
+          <%= render 'shared/modal', title: 'Delete discipline', body: 'Are you sure?', footer: button_to('Ok', discipline_path(@discipline), method: :delete, class: 'btn btn-success') %>
+        </div>
+      </div>
+      <p class="card-subtitle text-body-secondary">Period: <%= @discipline.period %> </p>
+
+      <p>
+        <span class="badge <%= define_cor_status(@discipline.status) %>">
+          <%= @discipline.status %>
+        </span>
+      </p>
+
+    </div>
+  </div>
+  </div>
+</div>

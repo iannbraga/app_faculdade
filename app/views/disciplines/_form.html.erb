@@ -1,0 +1,34 @@
+<div class="container p-2">
+  <%= form_with(model: discipline) do |form| %>
+    <% if discipline.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(discipline.errors.count, "error") %> prohibited this discipline from being saved:</h2>
+
+        <ul>
+          <% discipline.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :period, class: 'form-label' %>
+      <%= form.text_field :period, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :status, class: 'form-label' %>
+      <%= form.select :status, %w[Pendente Cursando Concluida], { include_blank: true }, class: 'form-select' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit 'Save', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

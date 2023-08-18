@@ -1,0 +1,31 @@
+<div class="container">
+  <p style="color: green"><%= notice %></p>
+  <div class="d-flex justify-content-center">
+    <div class="row">
+        <h1>
+          Disciplines
+          <%= link_to "", new_discipline_path, class: 'bi bi-plus text-secondary' %>
+        </h1>
+    </div>
+  </div>
+  <div id="disciplines">
+    <table class="table">
+      <thead>
+      <tr class="text-center">
+        <th scope="col">Period</th>
+        <th scope="col">Title</th>
+        <th scope="col">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @disciplines.each do |discipline| %>
+        <tr>
+          <td class="text-center"> <%= discipline.period %></td>
+          <td> <%= link_to discipline.title, discipline_path(discipline), class: 'text-dark' %> </td>
+          <td> <span class="badge <%= define_cor_status(discipline.status) %>"> <%= discipline.status %> </span></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
