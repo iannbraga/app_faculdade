@@ -1,9 +1,21 @@
 class DisciplinesController < ApplicationController
   before_action :set_discipline, only: %i[ show edit update destroy ]
-
+  before_action :options_for_period, :options_for_status, only: %i[ index ]
   # GET /disciplines or /disciplines.json
   def index
     @disciplines = Discipline.all
+
+    if params[:period].present?
+      @disciplines = @disciplines.where(period: params[:period])
+    end
+    
+    if params[:title].present?
+      @disciplines = @disciplines.where("title LIKE ?", "%#{params[:title]}%")
+    end
+    
+    if params[:status].present?
+      @disciplines = @disciplines.where(status: params[:status])
+    end
   end
 
   # GET /disciplines/1 or /disciplines/1.json
@@ -55,6 +67,14 @@ class DisciplinesController < ApplicationController
       format.html { redirect_to disciplines_url, notice: "Discipline was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def options_for_status
+    @status_options = %w[Pendente Cursando Concluida]
+  end
+
+  def options_for_period
+    @period_options = %w[1° 2° 3° 4° 5° 6° 7° 8°]
   end
 
   private

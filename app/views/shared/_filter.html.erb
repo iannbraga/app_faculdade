@@ -1,0 +1,21 @@
+<div class="container text-center">
+  <%= form_with(url: disciplines_path, method: :get)  do |f| %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-3">
+        <%= f.label :period, class: 'form-label' %>
+        <%= f.select :period, @period_options, { include_blank: true }, class: 'form-select' %>
+      </div>
+      <div class="col-4">
+        <%= f.label :title, class: 'form-label' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      <div class="col-3">
+        <%= f.label :status, class: 'form-label' %>
+        <%= f.select :status, @status_options, { include_blank: true }, class: 'form-select' %>
+      </div>
+      <div class="col-2 pt-4 mt-2">
+        <%= f.submit "Filter", disable_with: 'Filtering...', class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  <% end %>
+</div>
