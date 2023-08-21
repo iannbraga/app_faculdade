@@ -22,7 +22,7 @@
         <tr>
           <td class="text-center"> <%= discipline.period %></td>
           <td> <%= link_to discipline.title, discipline_path(discipline), class: 'text-dark' %> </td>
-          <td> <span class="badge <%= define_cor_status(discipline.status) %>"> <%= discipline.status %> </span></td>
+          <td class="text-center"> <span class="badge <%= define_cor_status(discipline.status) %>"> <%= discipline.status %> </span></td>
         </tr>
       <% end %>
       </tbody>
